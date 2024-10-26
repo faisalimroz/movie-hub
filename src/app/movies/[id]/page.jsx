@@ -99,7 +99,7 @@ const MovieDetail = ({ params }) => {
         </button>
       </div>
 
-      <MovieRecommendation recommendation={recommendation} id={id} />
+      <MovieRecommendation recommendation={recommendation} id={id}  />
     </div>
   );
 };
