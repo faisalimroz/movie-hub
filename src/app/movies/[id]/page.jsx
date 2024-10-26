@@ -5,7 +5,7 @@ import { addMovieToWatchlist, removeMovieFromWatchlist } from '../../actions/wat
 import Image from 'next/image';
 import './page.css';
 import Loading from '../../../components/Loading';
-import { MovieSchema, CreditsSchema } from '../../../components/schema'; // Import your schemas
+import { MovieSchema, CreditsSchema } from '../../../components/schema'; 
 
 const MovieDetail = ({ params }) => {
   const { id } = params;
@@ -14,26 +14,29 @@ const MovieDetail = ({ params }) => {
   const [recommendation, setRecommendation] = useState([]);
   const [isInWatchlist, setIsInWatchlist] = useState(false);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);  // Add loading state here
+
   const apiKey = process.env.NEXT_PUBLIC_SECRET_KEY;
+
   useEffect(() => {
     async function fetchMovieDetails() {
       try {
         const movieResponse = await fetch(
-          `https://api.themoviedb.org/3/movie/${id}?api_key=8d8973285e092708c832dbe4e8f132e2`
+          `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`
         ).then((res) => res.json());
 
         MovieSchema.parse(movieResponse);
         setMovie(movieResponse);
 
         const creditsResponse = await fetch(
-          `https://api.themoviedb.org/3/movie/${id}/credits?api_key=8d8973285e092708c832dbe4e8f132e2`
+          `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}`
         ).then((res) => res.json());
 
         CreditsSchema.parse(creditsResponse);
         setCredits(creditsResponse);
 
         const recommendationsResponse = await fetch(
-          `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=8d8973285e092708c832dbe4e8f132e2&page=1`
+          `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${apiKey}&page=1`
         ).then((res) => res.json());
 
         setRecommendation(recommendationsResponse.results);
@@ -99,7 +102,13 @@ const MovieDetail = ({ params }) => {
         </button>
       </div>
 
-      <MovieRecommendation recommendation={recommendation} id={id}  />
+      {/* Pass loading and setLoading as props */}
+      <MovieRecommendation 
+        recommendation={recommendation} 
+        id={id} 
+        loading={loading} 
+        setLoading={setLoading} 
+      />
     </div>
   );
 };
