@@ -1,0 +1,48 @@
+.movie-details {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #FAEBEEFF;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .movie-details h1 {
+    color: #00264d;
+  }
+  
+  .movie-details p {
+    color: #00264d;
+  }
+  
+  .movie-details ul {
+    padding-left: 10px;
+  }
+  
+  .movie-details li {
+    margin-bottom: 5px;
+    color: #00264d;
+  }
+ 
+           
+  .btn-grad {
+    background-image: linear-gradient(to right, #1A2980 0%, #26D0CE  51%, #1A2980  100%);
+    
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+  }
+
+  .btn-grad:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+  }
+ 

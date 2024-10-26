@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -10,8 +11,12 @@ module.exports = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        metal: {
+          200: '#d3d3d3', 
+          700: '#5a5a5a', 
+        },
       },
     },
   },
-  plugins: [],
+  plugins: [require('daisyui')],
 };
