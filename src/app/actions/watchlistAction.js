@@ -1,19 +1,23 @@
-// app/actions/watchlistActions.js
-"use server";
 
-import { addToWatchlist, removeFromWatchlist, getWatchlist } from "./watchlistStore";
+"use client";
 
-// Add movie to watchlist
-export async function addMovieToWatchlist(movie) {
-  addToWatchlist(movie);
-}
-
-// Remove movie from watchlist
-export async function removeMovieFromWatchlist(movieId) {
-  removeFromWatchlist(movieId);
-}
-
-// Get the current watchlist
 export async function fetchWatchlist() {
-  return getWatchlist();
+  if (typeof window !== "undefined") {
+    return JSON.parse(localStorage.getItem("watchlist")) || [];
+  }
+  return [];
+}
+
+export async function addMovieToWatchlist(movie) {
+  let watchlist = await fetchWatchlist();
+  if (!watchlist.find((m) => m.id === movie.id)) {
+    watchlist.push(movie);
+    localStorage.setItem("watchlist", JSON.stringify(watchlist));
+  }
+}
+
+export async function removeMovieFromWatchlist(movieId) {
+  let watchlist = await fetchWatchlist();
+  watchlist = watchlist.filter((movie) => movie.id !== movieId);
+  localStorage.setItem("watchlist", JSON.stringify(watchlist));
 }
