@@ -3,12 +3,11 @@
 import { useState, useEffect } from 'react';
 import { fetchWatchlist, removeMovieFromWatchlist } from '../actions/watchlistAction';
 import Image from 'next/image';
-import Card from '@/components/card';
 import Link from 'next/link';
 
 const Watchlist = () => {
   const [watchlist, setWatchlist] = useState([]);
-
+  const apiKey = process.env.NEXT_PUBLIC_SECRET_KEY;
   useEffect(() => {
     async function loadWatchlist() {
       const movies = await fetchWatchlist();

@@ -4,19 +4,19 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 import MovieList from '../movies/page';
-import Card from '@/components/card';
+import Card from '../../components/card';
 
 const SearchPage = () => {
     const searchParams = useSearchParams();
     const query = searchParams.get('query');
     const [movies, setMovies] = useState([]);
-
+    const apiKey = process.env.NEXT_PUBLIC_SECRET_KEY;
     useEffect(() => {
         if (query) {
           
             const fetchMovies = async () => {
                 try {
-                    const response = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=8d8973285e092708c832dbe4e8f132e2&query=${query}`);
+                    const response = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`);
                     setMovies(response.data.results);
                 } catch (error) {
                     console.error('Error fetching movies:', error);

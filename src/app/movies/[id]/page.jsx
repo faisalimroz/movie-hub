@@ -4,7 +4,7 @@ import MovieRecommendation from '../../movieRecomendation/page';
 import { addMovieToWatchlist, removeMovieFromWatchlist } from '../../actions/watchlistAction';
 import Image from 'next/image';
 import './page.css';
-import Loading from '@/components/Loading';
+import Loading from '../../../components/Loading';
 import { MovieSchema, CreditsSchema } from '../../../components/schema'; // Import your schemas
 
 const MovieDetail = ({ params }) => {
@@ -14,7 +14,7 @@ const MovieDetail = ({ params }) => {
   const [recommendation, setRecommendation] = useState([]);
   const [isInWatchlist, setIsInWatchlist] = useState(false);
   const [error, setError] = useState(null);
-
+  const apiKey = process.env.NEXT_PUBLIC_SECRET_KEY;
   useEffect(() => {
     async function fetchMovieDetails() {
       try {

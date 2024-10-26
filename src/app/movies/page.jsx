@@ -1,19 +1,19 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import Card from '@/components/card';
+import Card from '../../components/card';
 import './movies.css';
 
 const MovieList = () => {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
-
+  const apiKey = process.env.NEXT_PUBLIC_SECRET_KEY;
   useEffect(() => {
     const fetchMovies = async () => {
       setLoading(true);
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/popular?api_key=8d8973285e092708c832dbe4e8f132e2&page=${page}`,
+        `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=${page}`,
         { next: { revalidate: 3600 } }
       );
       const data = await response.json();

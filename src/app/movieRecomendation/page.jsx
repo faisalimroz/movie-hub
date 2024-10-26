@@ -2,20 +2,18 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
-import Card from '@/components/card';
+import Card from '../../components/card';
 import './recomend.css';
 
-const MovieRecommendation = ({ recommendation, id }) => {
+const MovieRecommendation = ({ recommendation, id, loading }) => {
   const [page, setPage] = useState(1);
-  const [movies, setMovies] = useState(recommendation || []); // Ensure it's an array if no recommendations are passed initially
-  const [loading, setLoading] = useState(false);
+  const [movies, setMovies] = useState(recommendation || []);
 
-  // Load more movies
   const loadMoreMovies = async () => {
     setLoading(true);
     try {
       const movieRecommendation = await axios.get(
-        `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=8d8973285e092708c832dbe4e8f132e2&page=${page + 1}`
+        `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${process.env.NEXT_PUBLIC_SECRET_KEY}&page=${page + 1}`
       );
       setMovies((prevMovies) => [...prevMovies, ...movieRecommendation.data.results]);
       setPage((prevPage) => prevPage + 1);
@@ -26,7 +24,6 @@ const MovieRecommendation = ({ recommendation, id }) => {
     }
   };
 
-  
   useEffect(() => {
     setMovies(recommendation || []);
     setPage(1);
