@@ -22,7 +22,7 @@ const MovieList = () => {
     };
 
     fetchMovies();
-  }, [page]);
+  }, [page,apiKey]);
 
   const loadMoreMovies = () => {
     setPage((prevPage) => prevPage + 1);

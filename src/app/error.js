@@ -13,7 +13,7 @@ const error = () => {
                     <div className="absolute">
                         <div className="">
                             <h1 className="my-2 text-gray-800 font-bold text-2xl">
-                                Looks like you've found the
+                                Looks like you have found the
                                 doorway to the great nothing
                             </h1>
                             <p className="my-2 text-gray-800">Sorry data not found</p>

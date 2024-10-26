@@ -25,12 +25,12 @@ const SearchPage = () => {
 
             fetchMovies();
         }
-    }, [query]);
+    }, [query,apiKey]);
 
     return (
         <>
           <div className="container mx-auto px-4 search-results">
-            <h1 className='font-bold text-xl mb-2'>|Search Results for "{query}"</h1>
+            <h1 className='font-bold text-xl mb-2'>|Search Results for {query}</h1>
             <div className=" mt-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                 {movies.length > 0 ? (
                     movies.map((movie) => (
